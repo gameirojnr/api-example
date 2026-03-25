@@ -7,10 +7,11 @@ import {
 } from '@nestjs/common';
 import { Response } from 'express';
 import { BaseDomainError } from './BaseDomainError';
+import { LoggerService } from '../logger/LoggerService';
 
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
-  constructor(@Inject('LoggerService') private readonly logger: any) {}
+  constructor(@Inject('LoggerService') private readonly logger: LoggerService) {}
 
   catch(exception: unknown, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
@@ -21,6 +22,12 @@ export class GlobalExceptionFilter implements ExceptionFilter {
       path: request?.url,
       method: request?.method,
     };
+
+    const isIgnoredPath = request?.url?.startsWith('/.well-known/');
+    if (isIgnoredPath && exception instanceof HttpException) {
+      response.status(exception.getStatus()).json(exception.getResponse());
+      return;
+    }
 
     if (exception instanceof BaseDomainError) {
       this.logger.warn(
