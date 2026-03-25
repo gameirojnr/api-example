@@ -5,7 +5,7 @@ import {
 } from '@api/domain/book/BookRepository';
 import { BookNotFoundError } from '@api/domain/book/errors/BookNotFoundError';
 import { ISBNValue } from '@api/domain/book/value-objects/ISBNValue';
-import { BaseDomainError } from '@api/domain/shared/BaseDomainError';
+import { BaseDomainError } from '@api-example/shared';
 import { ResultValue } from '@api/domain/shared/ResultValue';
 import { BookResponseDto } from './dto/BookResponseDto';
 import { BookMapper } from './dto/BookMapper';

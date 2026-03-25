@@ -4,7 +4,7 @@ import {
   BOOK_REPOSITORY,
 } from '@api/domain/book/BookRepository';
 import { BookNotFoundError } from '@api/domain/book/errors/BookNotFoundError';
-import { BaseDomainError } from '@api/domain/shared/BaseDomainError';
+import { BaseDomainError } from '@api-example/shared';
 import { ResultValue } from '@api/domain/shared/ResultValue';
 import { BookResponseDto } from './dto/BookResponseDto';
 import { BookMapper } from './dto/BookMapper';

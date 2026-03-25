@@ -121,8 +121,9 @@ __metadata:
   resolution: "@api-example/shared@workspace:shared"
   dependencies:
     "@nestjs/common": "npm:^11.0.1"
+    "@nestjs/core": "npm:^11.0.1"
     rxjs: "npm:^7.8.1"
-    winston: "npm:^3.19.0"
+    winston: "npm:^3.17.0"
   peerDependencies:
     express: "*"
   languageName: unknown
@@ -8510,7 +8511,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"winston@npm:^3.19.0":
+"winston@npm:^3.17.0":
   version: 3.19.0
   resolution: "winston@npm:3.19.0"
   dependencies:

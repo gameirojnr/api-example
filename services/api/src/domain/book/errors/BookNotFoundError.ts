@@ -1,5 +1,4 @@
-import { BaseDomainError } from '../../shared/BaseDomainError';
-import { DomainHttpCode } from '../../shared/DomainHttpCodeType';
+import { BaseDomainError, DomainHttpCode } from '@api-example/shared';
 
 export class BookNotFoundError extends BaseDomainError {
   static readonly statusCode = DomainHttpCode.NOT_FOUND;
