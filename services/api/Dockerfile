@@ -14,6 +14,16 @@ COPY tsconfig.base.json ./
 COPY shared/ shared/
 COPY services/api/ services/api/
 
+# ------- dev stage (hot-reload) -------
+FROM base AS dev
+
+WORKDIR /app/services/api
+
+ENV NODE_ENV=development
+EXPOSE 3000
+
+CMD ["yarn", "nest", "start", "--watch"]
+
 # ------- build stage -------
 FROM base AS build
 

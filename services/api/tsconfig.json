@@ -7,7 +7,7 @@
       "@api/domain/*": ["src/domain/*"],
       "@api/application/*": ["src/application/*"],
       "@api/infrastructure/*": ["src/infrastructure/*"],
-      "@shared": ["../../shared/src/index.ts"],
+      "@shared": ["../../shared/src"],
       "@shared/*": ["../../shared/src/*"]
     }
   },

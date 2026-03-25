@@ -15,16 +15,20 @@ services:
     build:
       context: .
       dockerfile: services/api/Dockerfile
-      target: base
+      target: dev
     ports:
       - "${PORT:-3000}:3000"
     environment:
       - NODE_ENV=development
       - PORT=3000
+      - CHOKIDAR_USEPOLLING=true
+      - CHOKIDAR_INTERVAL=1000
     volumes:
       - ./services/api/src:/app/services/api/src
       - ./shared/src:/app/shared/src
       - ./tsconfig.base.json:/app/tsconfig.base.json
-    command: yarn workspace @api-example/api start:dev
+      - ./services/api/tsconfig.json:/app/services/api/tsconfig.json
+      - ./services/api/tsconfig.build.json:/app/services/api/tsconfig.build.json
+      - ./services/api/nest-cli.json:/app/services/api/nest-cli.json
     profiles:
       - dev
