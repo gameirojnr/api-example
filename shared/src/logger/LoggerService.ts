@@ -44,27 +44,36 @@ export class LoggerService implements NestLoggerService {
         }),
       );
     } else {
+      const devFormat = winston.format.printf(({ timestamp, level, message, ...meta }) => {
+        const correlationId = meta.correlationId || '-';
+        const context = meta.useCase || meta.context || '';
+        const remaining = { ...meta };
+        delete remaining.correlationId;
+        delete remaining.service;
+        delete remaining.useCase;
+        delete remaining.context;
+
+        const metaStr =
+          Object.keys(remaining).length > 0
+            ? ` ${JSON.stringify(remaining)}`
+            : '';
+
+        return `${timestamp} [${level}] (${this.serviceName}) [${correlationId}]${context ? ` (${context})` : ''}: ${message}${metaStr}`;
+      });
+
       transports.push(
         new winston.transports.Console({
           format: winston.format.combine(
             winston.format.colorize(),
             winston.format.timestamp(),
-            winston.format.printf(({ timestamp, level, message, ...meta }) => {
-              const correlationId = meta.correlationId || '-';
-              const context = meta.useCase || meta.context || '';
-              const remaining = { ...meta };
-              delete remaining.correlationId;
-              delete remaining.service;
-              delete remaining.useCase;
-              delete remaining.context;
-
-              const metaStr =
-                Object.keys(remaining).length > 0
-                  ? ` ${JSON.stringify(remaining)}`
-                  : '';
-
-              return `${timestamp} [${level}] (${this.serviceName}) [${correlationId}]${context ? ` (${context})` : ''}: ${message}${metaStr}`;
-            }),
+            devFormat,
+          ),
+        }),
+        new winston.transports.File({
+          filename: 'logs/app.log',
+          format: winston.format.combine(
+            winston.format.timestamp(),
+            devFormat,
           ),
         }),
       );
