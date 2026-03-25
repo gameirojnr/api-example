@@ -22,3 +22,7 @@ lerna-debug.log*
 # temp directory
 .temp
 .tmp
+.yarn
+.pnp.cjs
+.pnp.loader.mjs
+.history
