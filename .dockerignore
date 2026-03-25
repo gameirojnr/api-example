@@ -1,0 +1,9 @@
+node_modules
+dist
+.git
+.history
+.env*
+*.log
+coverage
+.tmp
+.temp

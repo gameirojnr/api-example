@@ -1,0 +1,30 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: services/api/Dockerfile
+      target: production
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: unless-stopped
+
+  api-dev:
+    build:
+      context: .
+      dockerfile: services/api/Dockerfile
+      target: base
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    volumes:
+      - ./services/api/src:/app/services/api/src
+      - ./shared/src:/app/shared/src
+      - ./tsconfig.base.json:/app/tsconfig.base.json
+    command: yarn workspace @api-example/api start:dev
+    profiles:
+      - dev
