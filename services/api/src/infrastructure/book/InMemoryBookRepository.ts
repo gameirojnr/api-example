@@ -2,8 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { BookRepository } from '@api/domain/book/BookRepository';
 import { BookEntity } from '@api/domain/book/BookEntity';
 import { ISBNValue } from '@api/domain/book/value-objects/ISBNValue';
-import { ResultValue } from '@api/domain/shared/ResultValue';
-import { BaseDomainError } from '@shared';
+import { ResultValue, BaseDomainError } from '@shared';
 
 @Injectable()
 export class InMemoryBookRepository implements BookRepository {

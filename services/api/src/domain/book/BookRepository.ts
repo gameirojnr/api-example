@@ -1,7 +1,6 @@
-import { ResultValue } from '../shared/ResultValue';
+import { ResultValue, BaseDomainError } from '@shared';
 import { BookEntity } from './BookEntity';
 import { ISBNValue } from './value-objects/ISBNValue';
-import { BaseDomainError } from '@shared';
 
 export const BOOK_REPOSITORY = Symbol('BookRepository');
 

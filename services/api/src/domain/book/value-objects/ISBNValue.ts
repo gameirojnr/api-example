@@ -1,4 +1,4 @@
-import { ResultValue } from '../../shared/ResultValue';
+import { ResultValue } from '@shared';
 import { InvalidISBNError } from '../errors/InvalidISBNError';
 
 export class ISBNValue {

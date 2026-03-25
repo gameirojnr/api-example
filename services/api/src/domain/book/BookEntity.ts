@@ -1,5 +1,4 @@
-import { ResultValue } from '../shared/ResultValue';
-import { BaseDomainError, DomainHttpCode } from '@shared';
+import { ResultValue, BaseDomainError, DomainHttpCode } from '@shared';
 import { ISBNValue } from './value-objects/ISBNValue';
 
 export interface BookProps {
