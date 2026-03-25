@@ -6,7 +6,9 @@
     "paths": {
       "@api/domain/*": ["src/domain/*"],
       "@api/application/*": ["src/application/*"],
-      "@api/infrastructure/*": ["src/infrastructure/*"]
+      "@api/infrastructure/*": ["src/infrastructure/*"],
+      "@api-example/shared": ["../../shared/src/index.ts"],
+      "@api-example/shared/*": ["../../shared/src/*"]
     }
   },
   "include": ["src/**/*"],

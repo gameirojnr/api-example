@@ -18,11 +18,11 @@ module.exports = {
       {
         default: 'disallow',
         rules: [
-          { from: 'domain', allow: [] },
+          { from: 'domain', allow: ['shared'] },
 
-          { from: 'application', allow: ['domain'] },
+          { from: 'application', allow: ['domain', 'shared'] },
 
-          { from: 'infrastructure', allow: ['domain', 'application'] },
+          { from: 'infrastructure', allow: ['domain', 'application', 'shared'] },
 
           { from: '*', allow: [], message: 'Unknown layer import blocked' },
         ],
@@ -37,6 +37,7 @@ module.exports = {
   },
   settings: {
     'boundaries/elements': [
+      { type: 'shared', pattern: 'shared/src/**' },
       { type: 'domain', pattern: 'services/*/src/domain/**' },
       { type: 'application', pattern: 'services/*/src/application/**' },
       { type: 'infrastructure', pattern: 'services/*/src/infrastructure/**' },
